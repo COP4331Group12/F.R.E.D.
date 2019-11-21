@@ -73,6 +73,7 @@ public class TrafficSignDetectFX {
         private void sendStopWithDelay(int time)
         {
 
+
             Car.getInstance().setCarNeutral();
 
             new Thread(() ->
@@ -82,7 +83,7 @@ public class TrafficSignDetectFX {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            });
+            }).start();
 
             Car.getInstance().moveCarForward();
 
@@ -92,8 +93,7 @@ public class TrafficSignDetectFX {
         protected volatile boolean runnable = false;
 
         public void run() {
-            int flag = 0;
-            int count = 0;
+
             synchronized (this) {
 
                 while (runnable) {
@@ -109,7 +109,6 @@ public class TrafficSignDetectFX {
 
                             if (signDetections.toArray().length > 0) {// If sign was found in view
                                 if (!signFound) {// If first time frame sign seen
-                                    System.out.println("STOP CAR");
 
                                     signFound = true;
 
@@ -131,16 +130,6 @@ public class TrafficSignDetectFX {
                             image = new Image(new ByteArrayInputStream(mem.toArray()));
                             display.setImage(image);
 
-                            if (flag == 1){
-
-                                if (count>0) {
-                                    count--;
-                                }
-                                else {
-                                    flag = 0;
-                                    Car.getInstance().moveCarForward();
-                                }
-                            }
 
                         } catch (Exception ex) {
                             ex.printStackTrace();

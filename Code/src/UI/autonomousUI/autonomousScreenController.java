@@ -20,6 +20,7 @@ public class autonomousScreenController
 
     private void beginHazardDetection()
     {
+
         new Thread(() -> {
 
             while(hasHazardDetection)

@@ -38,10 +38,21 @@ public class Car
 
     private static volatile boolean autonomousMode = false;
 
+
     private Car()
     {
         state = neutralCode;
-        //this.turnCar("0","0");
+    }
+
+    public static Car getInstance()
+    {
+
+        if(car == null)
+        {
+            car = new Car();
+        }
+
+        return car;
     }
 
     public boolean getAutonomousMode() {
@@ -57,17 +68,6 @@ public class Car
         return state;
     }
 
-    public static Car getInstance()
-    {
-
-        if(car == null)
-        {
-            car = new Car();
-        }
-
-        return car;
-    }
-
     public boolean isTrackingDistance()
     {
         return trackDistance;
@@ -79,6 +79,8 @@ public class Car
     {
         Logger.getInstance().logMessage(networkUtility.getInstance().sendCommand(endCode));
         Logger.getInstance().logMessage("Sent 9 command");
+
+        //This is a change
 
         state = endCode;
     }
@@ -146,9 +148,9 @@ public class Car
     //to make sure we don't bind gears by switching too fast
     public void moveCarForward()
     {
-        lockBackward();
-
         while(!canMoveForward){}
+
+        lockBackward();
 
         Logger.getInstance().logMessage("[Server] -> " + networkUtility.getInstance().sendCommand(forwardCode));
 
@@ -159,9 +161,10 @@ public class Car
     //to make sure we don't bind gears by switching too fast
     public void moveCarBackward()
     {
-        lockForward();
 
         while(!canMoveBack){}
+
+        lockForward();
 
         Logger.getInstance().logMessage("[Server] -> " + networkUtility.getInstance().sendCommand(backwardCode));
 
@@ -238,3 +241,4 @@ public class Car
 
 
 }
+

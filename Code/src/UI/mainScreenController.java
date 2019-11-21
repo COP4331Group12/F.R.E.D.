@@ -3,9 +3,12 @@ package UI;
 
 import NeuralNetwork.TrafficSignDetectFX;
 import javafx.fxml.FXML;
+import javafx.geometry.Point3D;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import logs.Logger;
+
+import java.util.ArrayList;
 
 
 public class mainScreenController
@@ -31,7 +34,7 @@ public class mainScreenController
     private void startClassifier()
     {
         TrafficSignDetectFX classifier = new TrafficSignDetectFX();
-        classifier.setDisplay(imageView);
+        //classifier.setDisplay(imageView);
 
     }
 

@@ -1,8 +1,11 @@
 package UI.manualUI;
 
 import arduinoControl.Car;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -65,6 +68,7 @@ public class manualScreenController
         {
             Car.getInstance().moveCarForward();
         }
+
     }
 
     //This is called when the backward button is pressed down, as well as when the
